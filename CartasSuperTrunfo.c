@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h> // Incluímos a biblioteca string.h para usar a função strlen
 
 int main() {
     // Declaração das variáveis para os dados da primeira carta
@@ -31,9 +32,11 @@ int main() {
     // Solicita e lê os dados da primeira cidade
     printf("digite o codigo da cidade EX. 'A01': ");
     scanf(" %3s", codigo);
+    while (getchar() != '\n'); // Limpa o buffer de entrada
 
     printf("digite o nome da cidade EX. 'Natal': ");
-    scanf(" %9s", nome_da_cidade);
+    fgets(nome_da_cidade, sizeof(nome_da_cidade), stdin);
+    nome_da_cidade[strcspn(nome_da_cidade, "\n")] = 0; // Remove o caractere de nova linha, se presente
 
     printf("digite o numero da população: ");
     scanf(" %lu", &populacao);
@@ -69,12 +72,13 @@ int main() {
     printf("\nCarta 2 \n");
 
     // Solicita e lê os dados da segunda cidade
-
     printf("digite o codigo da cidade EX. 'A01': ");
     scanf(" %3s", codigo2);
+    while (getchar() != '\n'); // Limpa o buffer de entrada
 
     printf("digite o nome da cidade EX. 'Natal': ");
-    scanf(" %9s", nome_da_cidade2);
+    fgets(nome_da_cidade2, sizeof(nome_da_cidade2), stdin);
+    nome_da_cidade2[strcspn(nome_da_cidade2, "\n")] = 0; // Remove o caractere de nova linha, se presente
 
     printf("digite o numero da população: ");
     scanf(" %lu", &populacao2);
@@ -106,7 +110,7 @@ int main() {
     float inverso_densidade2 = (densidade_populacional2 > 0) ? (1.0f / densidade_populacional2) : 0.0f;
     super_poder2 = (float)populacao2 + area2 + pib2 + numero_de_ponto_turistico2 + pib_per_capita2 + inverso_densidade2;
 
-    // --- Comparação das Cartas ---
+    // --- Resultados da Comparação ---
     printf("\n--- Resultados da Comparação ---\n");
 
     // População
